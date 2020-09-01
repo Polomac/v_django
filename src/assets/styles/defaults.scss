@@ -1,0 +1,13 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&display=swap');
+@import './reset.scss';
+@import './mixins.scss';
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+$theme: #663399;
+$text: #736598;
+$text-inverse:#f1e7fe;
+$accent: gold;
