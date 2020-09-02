@@ -19,22 +19,20 @@
 <script>
 export default {
   name: 'menu-component',
+  props: {
+    scrolled: {
+      required: true,
+    },
+  },
   data() {
     return {
-      scrolled: false,
       mobileMenuOpened: false,
     };
   },
   methods: {
-    handleScroll() {
-      this.scrolled = window.scrollY > 10;
-    },
     toggleMobileMenu() {
       this.mobileMenuOpened = !this.mobileMenuOpened;
     },
-  },
-  created() {
-    window.addEventListener('scroll', this.handleScroll);
   },
 };
 </script>
@@ -121,7 +119,7 @@ export default {
     align-items: flex-start;
     justify-content: space-around;
     height: 300px;
-    z-index: 0;
+    z-index: 1;
     transition: all 0.3s linear;
     padding: 0;
     box-sizing: border-box;
