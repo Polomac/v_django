@@ -1,8 +1,8 @@
 <template>
   <div class="menu-wrapper" :class="{ 'fixed' : scrolled}">
     <div class="menu-wrapper_desktop nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/articles">Articles</router-link> |
+      <router-link to="/">Home</router-link>
+      <router-link to="/articles">Articles</router-link>
       <router-link to="/about">About</router-link>
     </div>
     <div class="material-icons mobile-icon" @click="toggleMobileMenu">
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     handleScroll() {
-      this.scrolled = window.scrollY > 10;
+      this.scrolled = window.scrollY > 5;
     },
     toggleMobileMenu() {
       this.mobileMenuOpened = !this.mobileMenuOpened;
@@ -48,6 +48,7 @@ export default {
   align-items: center;
   justify-content: flex-end;
   height: 79px;
+  width: 100%;
 
   &.fixed {
     position: fixed;
@@ -75,13 +76,14 @@ export default {
     padding: 30px;
 
     a {
-      font-weight: thin;
+      font-weight: 500;
       color: $text-inverse;
       position: relative;
       margin-left: 30px;
+      font-size: 1.1em;
 
       &.router-link-exact-active {
-        color: $accent;
+        color: $text;
         &::after {
           border-bottom: solid $accent 4px;
           content: " ";
@@ -111,12 +113,15 @@ export default {
     flex-flow: column;
     background: lighten($theme, 10%);
     top: 79px;
-    right: -60px;
+    right: 0;
     align-items: flex-start;
     justify-content: space-around;
     height: 300px;
     z-index: 0;
     transition: all 0.3s linear;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
 
     &.opened {
       width: 260px;
