@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     handleScroll() {
-      this.scrolled = window.scrollY > 5;
+      this.scrolled = window.scrollY > 10;
     },
     toggleMobileMenu() {
       this.mobileMenuOpened = !this.mobileMenuOpened;
@@ -40,8 +40,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/styles/defaults.scss';
-
 .menu-wrapper {
   background: $theme;
   display:flex;
@@ -81,6 +79,12 @@ export default {
       position: relative;
       margin-left: 30px;
       font-size: 1.1em;
+
+      &::after {
+        width: 0;
+        transition: width 0.3s linear;
+        content: " ";
+      }
 
       &.router-link-exact-active {
         color: $text;

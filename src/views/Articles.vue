@@ -1,6 +1,6 @@
 <template>
-<div class="articles">
-  <h1 class="title">
+<div class="articles fluid-container">
+  <h1 class="title global-title">
     Articles
   </h1>
 </div>
@@ -10,6 +10,7 @@
 .articles {
   .title {
     color:crimson;
+    margin-top: 50px;
   }
 }
 </style>
