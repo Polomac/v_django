@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     handleScroll(vertical) {
-      console.log(vertical);
       this.scrolled = vertical.scrollTop > 1;
     },
   },

@@ -13,7 +13,7 @@ export default new Router({
       component: () => import(/* webpackChunkName: "home" */ './views/Home.vue'),
     },
     {
-      path: '/articles',
+      path: '/articles/:id?',
       name: 'articles',
       component: () => import(/* webpackChunkName: "articles" */ './views/Articles.vue'),
     },

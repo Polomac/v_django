@@ -1,7 +1,7 @@
 <template>
   <div class="menu-wrapper" :class="{ 'fixed' : scrolled}">
     <div class="menu-wrapper_desktop nav">
-      <router-link to="/">Home</router-link>
+      <router-link to="/" exact>Home</router-link>
       <router-link to="/articles">Articles</router-link>
       <router-link to="/about">About</router-link>
     </div>
@@ -85,6 +85,18 @@ export default {
       }
 
       &.router-link-exact-active {
+        color: $text;
+        &::after {
+          border-bottom: solid $accent 4px;
+          content: " ";
+          width: 100%;
+          position: absolute;
+          top: 100%;
+          left: 0;
+        }
+      }
+
+      &.router-link-active {
         color: $text;
         &::after {
           border-bottom: solid $accent 4px;
