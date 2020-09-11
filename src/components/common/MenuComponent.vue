@@ -9,7 +9,7 @@
       menu_open
     </div>
     <div class="mobile-menu nav" :class="{ 'opened' : mobileMenuOpened}" @click="toggleMobileMenu">
-      <router-link to="/">Home</router-link>
+      <router-link to="/" exact>Home</router-link>
       <router-link to="/articles">Articles</router-link>
       <router-link to="/about">About</router-link>
     </div>
