@@ -21,12 +21,20 @@
   <div class="articles" v-else>
     <h3>No articles found</h3>
   </div>
+  <v-btn class="mx-2 add-article" fab dark large @click="addAricleOpen">
+    <v-icon dark>mdi-pencil</v-icon>
+  </v-btn>
+  <add-article></add-article>
 </div>
 </template>
 
 <script>
+const AddArticle = () => import('../components/common/AddArticle.vue');
 export default {
   name: 'articles',
+  components: {
+    AddArticle,
+  },
   data() {
     return {
       articles: [],
@@ -52,6 +60,9 @@ export default {
     },
     back() {
       this.$router.go(-1);
+    },
+    addAricleOpen() {
+      this.$modal.show('add-article');
     },
   },
   created() {
@@ -128,6 +139,13 @@ export default {
       display: flex;
       justify-content: flex-end;
     }
+  }
+
+  .add-article {
+    background-color: $theme !important;
+    position: fixed;
+    bottom: 50px;
+    left: calc(100% - 90px);
   }
 }
 </style>
