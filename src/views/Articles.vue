@@ -4,12 +4,15 @@
     Articles
   </h1>
   <div class="vert-spacer" v-else>
-    <button @click="back">
+    <v-btn @click="back" class="back-button">
       Back
-    </button>
+    </v-btn>
   </div>
   <div class="articles" v-if="articles.length > 0">
-    <div class="article" v-for="article in articles" :key="article.slug" @click="toArticle(article.id)">
+    <div class="article"
+      v-for="article in articles"
+      :key="article.slug"
+      @click="toArticle(article.id)">
       <h3>{{article.title}}</h3>
       <p>{{article.body}}</p>
       <em>{{new Date(article.date).toLocaleDateString("at")}}</em>
@@ -69,7 +72,7 @@ export default {
 .articles-wrapper {
   .title {
     color: $theme;
-    margin-top: 50px;
+    margin: 50px 0 30px 0;
   }
 
   .vert-spacer {
@@ -77,20 +80,18 @@ export default {
     display: flex;
     justify-content: flex-end;
 
-    button {
-      background: $text;
+    .back-button {
+      background-color: $text !important;
       color: $text-inverse;
       border-radius: 4px;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
       border: none;
       padding: 10px 20px;
       font-size:0.875em;
       cursor: pointer;
+      transition: all 0.2s linear;
 
       &:hover {
-        background: lighten($text, 15%);
+        background-color: lighten($text, 15%) !important;
       }
     }
   }
