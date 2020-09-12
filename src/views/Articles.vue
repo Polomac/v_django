@@ -30,7 +30,7 @@
   </div>
   <div class="articles" v-if="articles.length === 0 && !loading">
     <h3>No articles found</h3>
-  </div><div class="articles" v-else>
+  </div><div class="articles" v-if="articles.length === 0 && loading">
     <h3>Loading...</h3>
   </div>
   <v-btn class="mx-2 add-article" fab dark large @click="addAricleOpen" title="Add article">
@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     async fetchArticles() {
-      this.loading='Loading...'
+      this.loading = 'Loading...';
       const url = !this.$route.params.id ? `${process.env.VUE_APP_API}/articles/` : `${process.env.VUE_APP_API}/articles/${this.$route.params.id}/`;
       const response = await fetch(url);
       const data = await response.json();
@@ -65,6 +65,7 @@ export default {
         this.articles = [data];
       }
       this.loading = null;
+      console.log(this.loading);
     },
     async deleteArticle(id) {
       try {
