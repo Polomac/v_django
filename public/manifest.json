@@ -13,8 +13,8 @@
       "type": "image/png"
     }
   ],
-  "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#000000",
+  "start_url": "https://v-django.herokuapp.com",
+  "display": "fullscreen",
+  "background_color": "#154360",
   "theme_color": "#5499C7"
 }
