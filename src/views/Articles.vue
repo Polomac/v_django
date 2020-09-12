@@ -28,8 +28,10 @@
       </div>
     </div>
   </div>
-  <div class="articles" v-else>
+  <div class="articles" v-if="articles.length === 0 && !loading">
     <h3>No articles found</h3>
+  </div><div class="articles" v-else>
+    <h3>Loading...</h3>
   </div>
   <v-btn class="mx-2 add-article" fab dark large @click="addAricleOpen" title="Add article">
     <v-icon dark>mdi-pencil</v-icon>
@@ -48,11 +50,13 @@ export default {
   data() {
     return {
       articles: [],
+      loading: null,
     };
   },
   methods: {
     async fetchArticles() {
-      const url = this.$route.params.id ? `${process.env.VUE_APP_API}/articles/${this.$route.params.id}/` : `${process.env.VUE_APP_API}/articles/`;
+      this.loading='Loading...'
+      const url = !this.$route.params.id ? `${process.env.VUE_APP_API}/articles/` : `${process.env.VUE_APP_API}/articles/${this.$route.params.id}/`;
       const response = await fetch(url);
       const data = await response.json();
       if (data.length) {
@@ -60,6 +64,7 @@ export default {
       } else {
         this.articles = [data];
       }
+      this.loading = null;
     },
     async deleteArticle(id) {
       try {
@@ -92,7 +97,7 @@ export default {
       });
     },
   },
-  created() {
+  beforeMount() {
     this.fetchArticles();
   },
   watch: {
