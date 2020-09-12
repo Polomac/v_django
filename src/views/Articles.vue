@@ -4,9 +4,6 @@
     Articles
   </h1>
   <div class="vert-spacer" v-else>
-    <v-btn @click="back" class="back-button">
-      Back
-    </v-btn>
   </div>
   <div class="articles" v-if="articles.length > 0">
     <div class="article"
@@ -17,6 +14,9 @@
       <p>{{article.body}}</p>
       <em v-if="article.date">{{new Date(article.date).toLocaleDateString("at")}}</em>
       <div class="controls">
+        <v-btn @click="back" class="back-button" v-if="articles.length === 1">
+          Back
+        </v-btn>
         <v-btn class="update" dark
           @click.stop="addAricleOpen(article.id, article.title, article.slug, article.body)">
             Update
@@ -121,24 +121,8 @@ export default {
 
   .vert-spacer {
     margin: 30px 0;
-    display: flex;
-    justify-content: flex-end;
-
-    .back-button {
-      background-color: $text !important;
-      color: $text-inverse;
-      border-radius: 4px;
-      border: none;
-      padding: 10px 20px;
-      font-size:0.875em;
-      cursor: pointer;
-      transition: all 0.2s linear;
-
-      &:hover {
-        background-color: lighten($text, 15%) !important;
-      }
-    }
   }
+
   .articles {
     .article {
       margin-bottom:40px;
@@ -166,6 +150,22 @@ export default {
         justify-content: flex-end;
         margin: 20px 0 10px 0;
 
+        .back-button {
+          background-color: $text !important;
+          color: $text-inverse;
+          border-radius: 4px;
+          border: none;
+          font-size:0.875em;
+          cursor: pointer;
+          transition: all 0.2s linear;
+          margin-right: 20px;
+          width: 93px;
+
+          &:hover {
+            background-color: lighten($text, 15%) !important;
+          }
+        }
+
         .update {
           background-color: $confirm !important;
         }
@@ -178,6 +178,12 @@ export default {
     h3, p {
       color: $text;
       font-weight: 400;
+    }
+
+    p {
+      text-overflow: ellipsis;
+      white-space: wrap;
+      overflow: hidden;
     }
 
     em {
