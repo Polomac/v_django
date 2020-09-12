@@ -1,31 +1,65 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <nav-component :scrolled="scrolled"></nav-component>
+    <vue-scroll :ops="scrollOps" @handle-scroll="handleScroll">
+      <router-view/>
+    </vue-scroll>
   </div>
 </template>
 
-<style>
+<script>
+import navComponent from '@/components/common/MenuComponent.vue';
+import vueScroll from 'vuescroll';
+
+export default {
+  components: {
+    navComponent,
+    vueScroll,
+  },
+  data() {
+    return {
+      scrollOps: {
+        vuescroll: {
+          mode: 'native',
+          sizeStrategy: 'percent',
+          detectResize: true,
+          wheelScrollDuration: 200,
+        },
+        scrollPanel: {
+          initialScrollY: false,
+          initialScrollX: false,
+          scrollingX: false,
+          scrollingY: true,
+          speed: 10,
+          easing: 'easeInQuad',
+          verticalNativeBarPos: 'right',
+        },
+        rail: {},
+        bar: {
+          showDelay: 500,
+          onlyShowBarOnScroll: true,
+          keepShow: false,
+          minSize: 0.3,
+          background: '#5499C7',
+          size: '6px',
+          disable: false,
+        },
+      },
+      scrolled: false,
+    };
+  },
+  methods: {
+    handleScroll(vertical) {
+      this.scrolled = vertical.scrollTop > 1;
+    },
+  },
+};
+</script>
+
+<style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  height: 90vh;
+  overflow: hidden;
 }
 </style>
