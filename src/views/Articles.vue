@@ -94,7 +94,6 @@ export default {
   },
   created() {
     this.fetchArticles();
-    console.log(process.env.VUE_APP_API);
   },
   watch: {
     $route: {
