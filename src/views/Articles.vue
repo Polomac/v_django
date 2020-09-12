@@ -15,7 +15,7 @@
       @click="toArticle(article.id)">
       <h3>{{article.title}}</h3>
       <p>{{article.body}}</p>
-      <em>{{new Date(article.date).toLocaleDateString("at")}}</em>
+      <em v-if="article.date">{{new Date(article.date).toLocaleDateString("at")}}</em>
       <div class="controls">
         <v-btn class="update" dark
           @click.stop="addAricleOpen(article.id, article.title, article.slug, article.body)">
@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     async fetchArticles() {
-      const url = this.$route.params.id ? `http://127.0.0.1:8000/articles/${this.$route.params.id}/` : 'http://127.0.0.1:8000/articles/';
+      const url = this.$route.params.id ? `${process.env.VUE_APP_API}/articles/${this.$route.params.id}/` : `${process.env.VUE_APP_API}/articles/`;
       const response = await fetch(url);
       const data = await response.json();
       if (data.length) {
@@ -63,7 +63,7 @@ export default {
     },
     async deleteArticle(id) {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/articles/${id}/`, { method: 'DELETE' });
+        const response = await fetch(`${process.env.VUE_APP_API}/articles/${id}/`, { method: 'DELETE' });
         console.log(response);
         this.fetchArticles();
       // eslint-disable-next-line
@@ -94,6 +94,7 @@ export default {
   },
   created() {
     this.fetchArticles();
+    console.log(process.env.VUE_APP_API);
   },
   watch: {
     $route: {

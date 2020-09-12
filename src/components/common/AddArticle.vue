@@ -109,7 +109,7 @@ export default {
         };
 
         try {
-          const response = await fetch(`http://127.0.0.1:8000/articles/${this.id}/`, options);
+          const response = await fetch(`${process.env.VUE_APP_API}/articles/${this.id}/`, options);
           // eslint-disable-next-line
           const data = await response.json();
           this.$emit('refetch');
@@ -136,7 +136,7 @@ export default {
         };
 
         try {
-          const response = await fetch('http://127.0.0.1:8000/articles/', options);
+          const response = await fetch(`${process.env.VUE_APP_API}/articles/`, options);
           // eslint-disable-next-line
           const data = await response.json();
           this.closeModal();
