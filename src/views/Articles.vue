@@ -11,20 +11,30 @@
   <div class="articles" v-if="articles.length > 0">
     <div class="article"
       v-for="article in articles"
-      :key="article.slug"
+      :key="article.id"
       @click="toArticle(article.id)">
       <h3>{{article.title}}</h3>
       <p>{{article.body}}</p>
       <em>{{new Date(article.date).toLocaleDateString("at")}}</em>
+      <div class="controls">
+        <v-btn class="update" dark
+          @click.stop="addAricleOpen(article.id, article.title, article.slug, article.body)">
+            Update
+          </v-btn>
+        <v-btn class="delete" dark
+        @click.stop="deleteArticle(article.id)">
+          delete
+        </v-btn>
+      </div>
     </div>
   </div>
   <div class="articles" v-else>
     <h3>No articles found</h3>
   </div>
-  <v-btn class="mx-2 add-article" fab dark large @click="addAricleOpen">
+  <v-btn class="mx-2 add-article" fab dark large @click="addAricleOpen" title="Add article">
     <v-icon dark>mdi-pencil</v-icon>
   </v-btn>
-  <add-article></add-article>
+  <add-article @refetch="fetchArticles"></add-article>
 </div>
 </template>
 
@@ -51,6 +61,18 @@ export default {
         this.articles = [data];
       }
     },
+    async deleteArticle(id) {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/articles/${id}/`, { method: 'DELETE' });
+        console.log(response);
+        this.fetchArticles();
+      // eslint-disable-next-line
+      }
+      catch (error) {
+        console.log(error);
+      // eslint-disable-next-line
+      }
+    },
     toArticle(id) {
       // this.$router.push({ path: `/article/${id}` });
       if (this.$route.params.id !== id) {
@@ -61,8 +83,13 @@ export default {
     back() {
       this.$router.go(-1);
     },
-    addAricleOpen() {
-      this.$modal.show('add-article');
+    addAricleOpen(id, title, slug, body) {
+      this.$modal.show('add-article', {
+        id,
+        title,
+        slug,
+        body,
+      });
     },
   },
   created() {
@@ -125,6 +152,21 @@ export default {
         left: 0;
         bottom: -20px;
         position: absolute;
+      }
+
+      .controls {
+        display:flex;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        margin: 20px 0 10px 0;
+
+        .update {
+          background-color: $confirm !important;
+        }
+        .delete {
+          background-color: $alert !important;
+          margin-left:20px;
+        }
       }
     }
     h3, p {
