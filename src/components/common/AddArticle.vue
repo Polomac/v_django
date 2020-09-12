@@ -171,13 +171,16 @@ export default {
     margin: 0 auto;
     left: unset !important;
     padding: 20px;
-    height: auto !important;
+    height: 470px !important;
+    top: 60px !important;
+    overflow-y: auto;
 
     @include mqMin(390px) {
       width: 370px !important;
     }
     @include mqMin(768px) {
       width: 600px !important;
+      top: 100px !important;
     }
   }
 
