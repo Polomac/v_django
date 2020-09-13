@@ -1,4 +1,4 @@
-# v_django
+# vue-django
 
 ## Project setup
 ```
