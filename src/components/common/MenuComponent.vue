@@ -3,7 +3,7 @@
     <div class="menu-wrapper_desktop nav">
       <router-link to="/" exact>Home</router-link>
       <router-link to="/articles">Articles</router-link>
-      <router-link to="/about">About</router-link>
+      <router-link to="/api">API</router-link>
     </div>
     <div class="material-icons mobile-icon" @click="toggleMobileMenu">
       menu_open
@@ -11,7 +11,7 @@
     <div class="mobile-menu nav" :class="{ 'opened' : mobileMenuOpened}" @click="toggleMobileMenu">
       <router-link to="/" exact>Home</router-link>
       <router-link to="/articles">Articles</router-link>
-      <router-link to="/about">About</router-link>
+      <router-link to="/api">API</router-link>
     </div>
   </div>
 </template>

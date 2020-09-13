@@ -5,7 +5,7 @@
       <p class="global-par">
         This is the test of architecture with back-end provided by Django REST
         framework and consumed by Vue app on the front-end.
-      </p>
+      </p><br>
       <p>
         It's intended for speed and usability check and includes
         basic CRUD operations.

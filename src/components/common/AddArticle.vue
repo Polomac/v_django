@@ -92,22 +92,21 @@ export default {
       }
     },
     async postAricle() {
+      const myData = {
+        title: this.title,
+        slug: this.slug,
+        body: this.body,
+      };
+
+      const options = {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(myData),
+      };
       if (this.id) {
-        const myData = {
-          title: this.title,
-          slug: this.slug,
-          body: this.body,
-        };
-
-        const options = {
-          method: 'PUT',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(myData),
-        };
-
         try {
           const response = await fetch(`${process.env.VUE_APP_API}/articles/${this.id}/`, options);
           // eslint-disable-next-line
@@ -120,21 +119,7 @@ export default {
           console.log(error);
         }
       } else {
-        const myData = {
-          title: this.title,
-          slug: this.slug,
-          body: this.body,
-        };
-
-        const options = {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(myData),
-        };
-
+        options.method = 'POST';
         try {
           const response = await fetch(`${process.env.VUE_APP_API}/articles/`, options);
           // eslint-disable-next-line
